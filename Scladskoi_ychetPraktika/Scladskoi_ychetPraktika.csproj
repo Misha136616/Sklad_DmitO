@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{87A4B85C-3F94-4D86-BC04-7B873042870E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Scladskoi_ychetPraktika</RootNamespace>
+    <AssemblyName>Scladskoi_ychetPraktika</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuForm.Designer.cs">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProdykziaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProdykziaForm.Designer.cs">
+      <DependentUpon>ProdykziaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZakaziForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZakaziForm.Designer.cs">
+      <DependentUpon>ZakaziForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KlientsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KlientsForm.Designer.cs">
+      <DependentUpon>KlientsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SotrydnikiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SotrydnikiForm.Designer.cs">
+      <DependentUpon>SotrydnikiForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RasMatForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RasMatForm.Designer.cs">
+      <DependentUpon>RasMatForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Praktik_PDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Praktik_PDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuForm.resx">
+      <DependentUpon>MenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProdykziaForm.resx">
+      <DependentUpon>ProdykziaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZakaziForm.resx">
+      <DependentUpon>ZakaziForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KlientsForm.resx">
+      <DependentUpon>KlientsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SotrydnikiForm.resx">
+      <DependentUpon>SotrydnikiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RasMatForm.resx">
+      <DependentUpon>RasMatForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Praktik_PDataSet.xsc">
+      <DependentUpon>Praktik_PDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Praktik_PDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Praktik_PDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Praktik_PDataSet.xss">
+      <DependentUpon>Praktik_PDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

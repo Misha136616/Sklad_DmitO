@@ -1,0 +1,10 @@
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\bin\Debug\Scladskoi_ychetPraktika.exe.config
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\bin\Debug\Scladskoi_ychetPraktika.exe
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\bin\Debug\Scladskoi_ychetPraktika.pdb
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.csproj.AssemblyReference.cache
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.Form1.resources
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.Properties.Resources.resources
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.csproj.GenerateResource.cache
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.csproj.CoreCompileInputs.cache
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.exe
+C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.pdb
