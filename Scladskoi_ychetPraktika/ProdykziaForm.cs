@@ -31,5 +31,10 @@ namespace Scladskoi_ychetPraktika
             this.productTableAdapter.Fill(this.praktik_PDataSet.product);
 
         }
+
+        private void productDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

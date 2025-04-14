@@ -8,3 +8,19 @@ C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladsko
 C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.csproj.CoreCompileInputs.cache
 C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.exe
 C:\Users\79295\OneDrive\Рабочий стол\Scladskoi_ychetPraktika\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.pdb
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.csproj.AssemblyReference.cache
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.exe
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.pdb
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.MenuForm.resources
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.ProdykziaForm.resources
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.ZakaziForm.resources
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.KlientsForm.resources
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.SotrydnikiForm.resources
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.RasMatForm.resources
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.Properties.Resources.resources
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.csproj.GenerateResource.cache
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.csproj.CoreCompileInputs.cache
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\bin\Debug\Scladskoi_ychetPraktika.exe.config
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\bin\Debug\Scladskoi_ychetPraktika.exe
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\bin\Debug\Scladskoi_ychetPraktika.pdb
+D:\projects\Sklad_DmitO\Scladskoi_ychetPraktika\obj\Debug\Scladskoi_ychetPraktika.Form1.resources

@@ -10,11 +10,42 @@ using System.Windows.Forms;
 
 namespace Scladskoi_ychetPraktika
 {
-    public partial class MenuForm : Form
+    public partial class Form1 : Form
     {
-        public MenuForm()
+        public Form1()
         {
-            InitializeComponent();
+           InitializeComponent();
+        }
+
+        private void ProdykziaForm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Zakazi_but_Click(object sender, EventArgs e)
+        {
+            ZakaziForm zakaziForm = new ZakaziForm();
+            zakaziForm.Show();
+        }
+
+        private void Klients_but_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Sotrydniki_but_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RasMat_but_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Otch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

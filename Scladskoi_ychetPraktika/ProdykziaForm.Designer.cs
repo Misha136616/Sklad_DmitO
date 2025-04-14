@@ -41,27 +41,26 @@ namespace Scladskoi_ychetPraktika
             System.Windows.Forms.Label sold_atLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProdykziaForm));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.butSortir = new System.Windows.Forms.Button();
+            this.sold_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.praktik_PDataSet = new Scladskoi_ychetPraktika.Praktik_PDataSet();
+            this.packaged_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.washed_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.created_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.sourceTextBox = new System.Windows.Forms.TextBox();
+            this.categoryTextBox = new System.Windows.Forms.TextBox();
+            this.weight_per_unitTextBox = new System.Windows.Forms.TextBox();
+            this.varietyTextBox = new System.Windows.Forms.TextBox();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
             this.btnDobav = new System.Windows.Forms.Button();
             this.btnYdal = new System.Windows.Forms.Button();
             this.btnObnov = new System.Windows.Forms.Button();
-            this.praktik_PDataSet = new Scladskoi_ychetPraktika.Praktik_PDataSet();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productTableAdapter = new Scladskoi_ychetPraktika.Praktik_PDataSetTableAdapters.productTableAdapter();
             this.tableAdapterManager = new Scladskoi_ychetPraktika.Praktik_PDataSetTableAdapters.TableAdapterManager();
             this.productDataGridView = new System.Windows.Forms.DataGridView();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtProductSearch = new System.Windows.Forms.TextBox();
-            this.btnOchist = new System.Windows.Forms.Button();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.varietyTextBox = new System.Windows.Forms.TextBox();
-            this.weight_per_unitTextBox = new System.Windows.Forms.TextBox();
-            this.categoryTextBox = new System.Windows.Forms.TextBox();
-            this.sourceTextBox = new System.Windows.Forms.TextBox();
-            this.created_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.washed_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.packaged_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.sold_atDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.butSortir = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,8 +70,9 @@ namespace Scladskoi_ychetPraktika
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtProductSearch = new System.Windows.Forms.TextBox();
+            this.btnOchist = new System.Windows.Forms.Button();
             nameLabel = new System.Windows.Forms.Label();
             varietyLabel = new System.Windows.Forms.Label();
             weight_per_unitLabel = new System.Windows.Forms.Label();
@@ -83,10 +83,100 @@ namespace Scladskoi_ychetPraktika
             packaged_atLabel = new System.Windows.Forms.Label();
             sold_atLabel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.praktik_PDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.praktik_PDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // nameLabel
+            // 
+            nameLabel.AutoSize = true;
+            nameLabel.Location = new System.Drawing.Point(20, 33);
+            nameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new System.Drawing.Size(36, 13);
+            nameLabel.TabIndex = 9;
+            nameLabel.Text = "name:";
+            // 
+            // varietyLabel
+            // 
+            varietyLabel.AutoSize = true;
+            varietyLabel.Location = new System.Drawing.Point(20, 64);
+            varietyLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            varietyLabel.Name = "varietyLabel";
+            varietyLabel.Size = new System.Drawing.Size(41, 13);
+            varietyLabel.TabIndex = 10;
+            varietyLabel.Text = "variety:";
+            // 
+            // weight_per_unitLabel
+            // 
+            weight_per_unitLabel.AutoSize = true;
+            weight_per_unitLabel.Location = new System.Drawing.Point(19, 98);
+            weight_per_unitLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            weight_per_unitLabel.Name = "weight_per_unitLabel";
+            weight_per_unitLabel.Size = new System.Drawing.Size(79, 13);
+            weight_per_unitLabel.TabIndex = 11;
+            weight_per_unitLabel.Text = "weight per unit:";
+            // 
+            // categoryLabel
+            // 
+            categoryLabel.AutoSize = true;
+            categoryLabel.Location = new System.Drawing.Point(20, 127);
+            categoryLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            categoryLabel.Name = "categoryLabel";
+            categoryLabel.Size = new System.Drawing.Size(51, 13);
+            categoryLabel.TabIndex = 12;
+            categoryLabel.Text = "category:";
+            // 
+            // sourceLabel
+            // 
+            sourceLabel.AutoSize = true;
+            sourceLabel.Location = new System.Drawing.Point(20, 152);
+            sourceLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            sourceLabel.Name = "sourceLabel";
+            sourceLabel.Size = new System.Drawing.Size(42, 13);
+            sourceLabel.TabIndex = 13;
+            sourceLabel.Text = "source:";
+            // 
+            // created_atLabel
+            // 
+            created_atLabel.AutoSize = true;
+            created_atLabel.Location = new System.Drawing.Point(20, 177);
+            created_atLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            created_atLabel.Name = "created_atLabel";
+            created_atLabel.Size = new System.Drawing.Size(58, 13);
+            created_atLabel.TabIndex = 14;
+            created_atLabel.Text = "created at:";
+            // 
+            // washed_atLabel
+            // 
+            washed_atLabel.AutoSize = true;
+            washed_atLabel.Location = new System.Drawing.Point(23, 208);
+            washed_atLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            washed_atLabel.Name = "washed_atLabel";
+            washed_atLabel.Size = new System.Drawing.Size(59, 13);
+            washed_atLabel.TabIndex = 15;
+            washed_atLabel.Text = "washed at:";
+            // 
+            // packaged_atLabel
+            // 
+            packaged_atLabel.AutoSize = true;
+            packaged_atLabel.Location = new System.Drawing.Point(23, 240);
+            packaged_atLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            packaged_atLabel.Name = "packaged_atLabel";
+            packaged_atLabel.Size = new System.Drawing.Size(70, 13);
+            packaged_atLabel.TabIndex = 17;
+            packaged_atLabel.Text = "packaged at:";
+            // 
+            // sold_atLabel
+            // 
+            sold_atLabel.AutoSize = true;
+            sold_atLabel.Location = new System.Drawing.Point(23, 273);
+            sold_atLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            sold_atLabel.Name = "sold_atLabel";
+            sold_atLabel.Size = new System.Drawing.Size(41, 13);
+            sold_atLabel.TabIndex = 19;
+            sold_atLabel.Text = "sold at:";
             // 
             // groupBox2
             // 
@@ -115,23 +205,146 @@ namespace Scladskoi_ychetPraktika
             this.groupBox2.Controls.Add(this.btnDobav);
             this.groupBox2.Controls.Add(this.btnYdal);
             this.groupBox2.Controls.Add(this.btnObnov);
-            this.groupBox2.Location = new System.Drawing.Point(657, 27);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(493, 22);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(484, 697);
+            this.groupBox2.Size = new System.Drawing.Size(363, 566);
             this.groupBox2.TabIndex = 58;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Информация о Продукции";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(26, 485);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(170, 17);
+            this.radioButton2.TabIndex = 23;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Сортировка по возрастанию";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(26, 455);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(154, 17);
+            this.radioButton1.TabIndex = 22;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Сортировка по убыванию";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // butSortir
+            // 
+            this.butSortir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.butSortir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.butSortir.Location = new System.Drawing.Point(26, 523);
+            this.butSortir.Name = "butSortir";
+            this.butSortir.Size = new System.Drawing.Size(306, 28);
+            this.butSortir.TabIndex = 21;
+            this.butSortir.Text = "Сортировка";
+            this.butSortir.UseVisualStyleBackColor = false;
+            // 
+            // sold_atDateTimePicker
+            // 
+            this.sold_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "sold_at", true));
+            this.sold_atDateTimePicker.Location = new System.Drawing.Point(95, 273);
+            this.sold_atDateTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sold_atDateTimePicker.Name = "sold_atDateTimePicker";
+            this.sold_atDateTimePicker.Size = new System.Drawing.Size(151, 20);
+            this.sold_atDateTimePicker.TabIndex = 20;
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataMember = "product";
+            this.productBindingSource.DataSource = this.praktik_PDataSet;
+            // 
+            // praktik_PDataSet
+            // 
+            this.praktik_PDataSet.DataSetName = "Praktik_PDataSet";
+            this.praktik_PDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // packaged_atDateTimePicker
+            // 
+            this.packaged_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "packaged_at", true));
+            this.packaged_atDateTimePicker.Location = new System.Drawing.Point(95, 240);
+            this.packaged_atDateTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.packaged_atDateTimePicker.Name = "packaged_atDateTimePicker";
+            this.packaged_atDateTimePicker.Size = new System.Drawing.Size(151, 20);
+            this.packaged_atDateTimePicker.TabIndex = 18;
+            // 
+            // washed_atDateTimePicker
+            // 
+            this.washed_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "washed_at", true));
+            this.washed_atDateTimePicker.Location = new System.Drawing.Point(92, 208);
+            this.washed_atDateTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.washed_atDateTimePicker.Name = "washed_atDateTimePicker";
+            this.washed_atDateTimePicker.Size = new System.Drawing.Size(151, 20);
+            this.washed_atDateTimePicker.TabIndex = 16;
+            // 
+            // created_atDateTimePicker
+            // 
+            this.created_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "created_at", true));
+            this.created_atDateTimePicker.Location = new System.Drawing.Point(92, 177);
+            this.created_atDateTimePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.created_atDateTimePicker.Name = "created_atDateTimePicker";
+            this.created_atDateTimePicker.Size = new System.Drawing.Size(151, 20);
+            this.created_atDateTimePicker.TabIndex = 15;
+            // 
+            // sourceTextBox
+            // 
+            this.sourceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "source", true));
+            this.sourceTextBox.Location = new System.Drawing.Point(92, 152);
+            this.sourceTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sourceTextBox.Name = "sourceTextBox";
+            this.sourceTextBox.Size = new System.Drawing.Size(76, 20);
+            this.sourceTextBox.TabIndex = 14;
+            // 
+            // categoryTextBox
+            // 
+            this.categoryTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "category", true));
+            this.categoryTextBox.Location = new System.Drawing.Point(92, 127);
+            this.categoryTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.categoryTextBox.Name = "categoryTextBox";
+            this.categoryTextBox.Size = new System.Drawing.Size(76, 20);
+            this.categoryTextBox.TabIndex = 13;
+            // 
+            // weight_per_unitTextBox
+            // 
+            this.weight_per_unitTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "weight_per_unit", true));
+            this.weight_per_unitTextBox.Location = new System.Drawing.Point(100, 98);
+            this.weight_per_unitTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.weight_per_unitTextBox.Name = "weight_per_unitTextBox";
+            this.weight_per_unitTextBox.Size = new System.Drawing.Size(76, 20);
+            this.weight_per_unitTextBox.TabIndex = 12;
+            // 
+            // varietyTextBox
+            // 
+            this.varietyTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "variety", true));
+            this.varietyTextBox.Location = new System.Drawing.Point(71, 64);
+            this.varietyTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.varietyTextBox.Name = "varietyTextBox";
+            this.varietyTextBox.Size = new System.Drawing.Size(76, 20);
+            this.varietyTextBox.TabIndex = 11;
+            // 
+            // nameTextBox
+            // 
+            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "name", true));
+            this.nameTextBox.Location = new System.Drawing.Point(59, 31);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(76, 20);
+            this.nameTextBox.TabIndex = 10;
             // 
             // btnDobav
             // 
             this.btnDobav.BackColor = System.Drawing.Color.Lime;
             this.btnDobav.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnDobav.Location = new System.Drawing.Point(34, 412);
-            this.btnDobav.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDobav.Location = new System.Drawing.Point(26, 335);
             this.btnDobav.Name = "btnDobav";
-            this.btnDobav.Size = new System.Drawing.Size(189, 50);
+            this.btnDobav.Size = new System.Drawing.Size(142, 41);
             this.btnDobav.TabIndex = 7;
             this.btnDobav.Text = "Добавить";
             this.btnDobav.UseVisualStyleBackColor = false;
@@ -140,10 +353,9 @@ namespace Scladskoi_ychetPraktika
             // 
             this.btnYdal.BackColor = System.Drawing.Color.Crimson;
             this.btnYdal.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnYdal.Location = new System.Drawing.Point(253, 412);
-            this.btnYdal.Margin = new System.Windows.Forms.Padding(4);
+            this.btnYdal.Location = new System.Drawing.Point(190, 335);
             this.btnYdal.Name = "btnYdal";
-            this.btnYdal.Size = new System.Drawing.Size(189, 50);
+            this.btnYdal.Size = new System.Drawing.Size(142, 41);
             this.btnYdal.TabIndex = 9;
             this.btnYdal.Text = "Удалить";
             this.btnYdal.UseVisualStyleBackColor = false;
@@ -152,23 +364,12 @@ namespace Scladskoi_ychetPraktika
             // 
             this.btnObnov.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnObnov.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnObnov.Location = new System.Drawing.Point(34, 486);
-            this.btnObnov.Margin = new System.Windows.Forms.Padding(4);
+            this.btnObnov.Location = new System.Drawing.Point(26, 395);
             this.btnObnov.Name = "btnObnov";
-            this.btnObnov.Size = new System.Drawing.Size(408, 50);
+            this.btnObnov.Size = new System.Drawing.Size(306, 41);
             this.btnObnov.TabIndex = 8;
             this.btnObnov.Text = "Обновить";
             this.btnObnov.UseVisualStyleBackColor = false;
-            // 
-            // praktik_PDataSet
-            // 
-            this.praktik_PDataSet.DataSetName = "Praktik_PDataSet";
-            this.praktik_PDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // productBindingSource
-            // 
-            this.productBindingSource.DataMember = "product";
-            this.productBindingSource.DataSource = this.praktik_PDataSet;
             // 
             // productTableAdapter
             // 
@@ -199,208 +400,14 @@ namespace Scladskoi_ychetPraktika
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
             this.productDataGridView.DataSource = this.productBindingSource;
-            this.productDataGridView.Location = new System.Drawing.Point(13, 115);
+            this.productDataGridView.Location = new System.Drawing.Point(10, 93);
+            this.productDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.productDataGridView.Name = "productDataGridView";
             this.productDataGridView.RowHeadersWidth = 51;
             this.productDataGridView.RowTemplate.Height = 24;
-            this.productDataGridView.Size = new System.Drawing.Size(618, 609);
+            this.productDataGridView.Size = new System.Drawing.Size(464, 495);
             this.productDataGridView.TabIndex = 59;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(9, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(198, 20);
-            this.label5.TabIndex = 62;
-            this.label5.Text = "Поисковая строка 🡳";
-            // 
-            // txtProductSearch
-            // 
-            this.txtProductSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductSearch.Location = new System.Drawing.Point(13, 53);
-            this.txtProductSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtProductSearch.Name = "txtProductSearch";
-            this.txtProductSearch.Size = new System.Drawing.Size(618, 34);
-            this.txtProductSearch.TabIndex = 61;
-            // 
-            // btnOchist
-            // 
-            this.btnOchist.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnOchist.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnOchist.Location = new System.Drawing.Point(525, 20);
-            this.btnOchist.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnOchist.Name = "btnOchist";
-            this.btnOchist.Size = new System.Drawing.Size(106, 27);
-            this.btnOchist.TabIndex = 60;
-            this.btnOchist.Text = "Отчистить";
-            this.btnOchist.UseVisualStyleBackColor = false;
-            // 
-            // nameLabel
-            // 
-            nameLabel.AutoSize = true;
-            nameLabel.Location = new System.Drawing.Point(26, 41);
-            nameLabel.Name = "nameLabel";
-            nameLabel.Size = new System.Drawing.Size(47, 17);
-            nameLabel.TabIndex = 9;
-            nameLabel.Text = "name:";
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "name", true));
-            this.nameTextBox.Location = new System.Drawing.Point(79, 38);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(100, 22);
-            this.nameTextBox.TabIndex = 10;
-            // 
-            // varietyLabel
-            // 
-            varietyLabel.AutoSize = true;
-            varietyLabel.Location = new System.Drawing.Point(26, 79);
-            varietyLabel.Name = "varietyLabel";
-            varietyLabel.Size = new System.Drawing.Size(54, 17);
-            varietyLabel.TabIndex = 10;
-            varietyLabel.Text = "variety:";
-            // 
-            // varietyTextBox
-            // 
-            this.varietyTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "variety", true));
-            this.varietyTextBox.Location = new System.Drawing.Point(95, 79);
-            this.varietyTextBox.Name = "varietyTextBox";
-            this.varietyTextBox.Size = new System.Drawing.Size(100, 22);
-            this.varietyTextBox.TabIndex = 11;
-            // 
-            // weight_per_unitLabel
-            // 
-            weight_per_unitLabel.AutoSize = true;
-            weight_per_unitLabel.Location = new System.Drawing.Point(25, 121);
-            weight_per_unitLabel.Name = "weight_per_unitLabel";
-            weight_per_unitLabel.Size = new System.Drawing.Size(104, 17);
-            weight_per_unitLabel.TabIndex = 11;
-            weight_per_unitLabel.Text = "weight per unit:";
-            // 
-            // weight_per_unitTextBox
-            // 
-            this.weight_per_unitTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "weight_per_unit", true));
-            this.weight_per_unitTextBox.Location = new System.Drawing.Point(134, 121);
-            this.weight_per_unitTextBox.Name = "weight_per_unitTextBox";
-            this.weight_per_unitTextBox.Size = new System.Drawing.Size(100, 22);
-            this.weight_per_unitTextBox.TabIndex = 12;
-            // 
-            // categoryLabel
-            // 
-            categoryLabel.AutoSize = true;
-            categoryLabel.Location = new System.Drawing.Point(26, 156);
-            categoryLabel.Name = "categoryLabel";
-            categoryLabel.Size = new System.Drawing.Size(67, 17);
-            categoryLabel.TabIndex = 12;
-            categoryLabel.Text = "category:";
-            // 
-            // categoryTextBox
-            // 
-            this.categoryTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "category", true));
-            this.categoryTextBox.Location = new System.Drawing.Point(123, 156);
-            this.categoryTextBox.Name = "categoryTextBox";
-            this.categoryTextBox.Size = new System.Drawing.Size(100, 22);
-            this.categoryTextBox.TabIndex = 13;
-            // 
-            // sourceLabel
-            // 
-            sourceLabel.AutoSize = true;
-            sourceLabel.Location = new System.Drawing.Point(26, 187);
-            sourceLabel.Name = "sourceLabel";
-            sourceLabel.Size = new System.Drawing.Size(55, 17);
-            sourceLabel.TabIndex = 13;
-            sourceLabel.Text = "source:";
-            // 
-            // sourceTextBox
-            // 
-            this.sourceTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.productBindingSource, "source", true));
-            this.sourceTextBox.Location = new System.Drawing.Point(123, 187);
-            this.sourceTextBox.Name = "sourceTextBox";
-            this.sourceTextBox.Size = new System.Drawing.Size(100, 22);
-            this.sourceTextBox.TabIndex = 14;
-            // 
-            // created_atLabel
-            // 
-            created_atLabel.AutoSize = true;
-            created_atLabel.Location = new System.Drawing.Point(26, 218);
-            created_atLabel.Name = "created_atLabel";
-            created_atLabel.Size = new System.Drawing.Size(76, 17);
-            created_atLabel.TabIndex = 14;
-            created_atLabel.Text = "created at:";
-            // 
-            // created_atDateTimePicker
-            // 
-            this.created_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "created_at", true));
-            this.created_atDateTimePicker.Location = new System.Drawing.Point(123, 218);
-            this.created_atDateTimePicker.Name = "created_atDateTimePicker";
-            this.created_atDateTimePicker.Size = new System.Drawing.Size(200, 22);
-            this.created_atDateTimePicker.TabIndex = 15;
-            // 
-            // washed_atLabel
-            // 
-            washed_atLabel.AutoSize = true;
-            washed_atLabel.Location = new System.Drawing.Point(31, 256);
-            washed_atLabel.Name = "washed_atLabel";
-            washed_atLabel.Size = new System.Drawing.Size(76, 17);
-            washed_atLabel.TabIndex = 15;
-            washed_atLabel.Text = "washed at:";
-            // 
-            // washed_atDateTimePicker
-            // 
-            this.washed_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "washed_at", true));
-            this.washed_atDateTimePicker.Location = new System.Drawing.Point(123, 256);
-            this.washed_atDateTimePicker.Name = "washed_atDateTimePicker";
-            this.washed_atDateTimePicker.Size = new System.Drawing.Size(200, 22);
-            this.washed_atDateTimePicker.TabIndex = 16;
-            // 
-            // packaged_atLabel
-            // 
-            packaged_atLabel.AutoSize = true;
-            packaged_atLabel.Location = new System.Drawing.Point(31, 296);
-            packaged_atLabel.Name = "packaged_atLabel";
-            packaged_atLabel.Size = new System.Drawing.Size(90, 17);
-            packaged_atLabel.TabIndex = 17;
-            packaged_atLabel.Text = "packaged at:";
-            // 
-            // packaged_atDateTimePicker
-            // 
-            this.packaged_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "packaged_at", true));
-            this.packaged_atDateTimePicker.Location = new System.Drawing.Point(127, 296);
-            this.packaged_atDateTimePicker.Name = "packaged_atDateTimePicker";
-            this.packaged_atDateTimePicker.Size = new System.Drawing.Size(200, 22);
-            this.packaged_atDateTimePicker.TabIndex = 18;
-            // 
-            // sold_atLabel
-            // 
-            sold_atLabel.AutoSize = true;
-            sold_atLabel.Location = new System.Drawing.Point(31, 336);
-            sold_atLabel.Name = "sold_atLabel";
-            sold_atLabel.Size = new System.Drawing.Size(54, 17);
-            sold_atLabel.TabIndex = 19;
-            sold_atLabel.Text = "sold at:";
-            // 
-            // sold_atDateTimePicker
-            // 
-            this.sold_atDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.productBindingSource, "sold_at", true));
-            this.sold_atDateTimePicker.Location = new System.Drawing.Point(127, 336);
-            this.sold_atDateTimePicker.Name = "sold_atDateTimePicker";
-            this.sold_atDateTimePicker.Size = new System.Drawing.Size(200, 22);
-            this.sold_atDateTimePicker.TabIndex = 20;
-            // 
-            // butSortir
-            // 
-            this.butSortir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.butSortir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.butSortir.Location = new System.Drawing.Point(34, 644);
-            this.butSortir.Margin = new System.Windows.Forms.Padding(4);
-            this.butSortir.Name = "butSortir";
-            this.butSortir.Size = new System.Drawing.Size(408, 34);
-            this.butSortir.TabIndex = 21;
-            this.butSortir.Text = "Сортировка";
-            this.butSortir.UseVisualStyleBackColor = false;
+            this.productDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productDataGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -474,46 +481,56 @@ namespace Scladskoi_ychetPraktika
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.Width = 125;
             // 
-            // radioButton1
+            // label5
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(34, 560);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(197, 21);
-            this.radioButton1.TabIndex = 22;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Сортировка по убыванию";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(7, 22);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(161, 17);
+            this.label5.TabIndex = 62;
+            this.label5.Text = "Поисковая строка 🡳";
             // 
-            // radioButton2
+            // txtProductSearch
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(34, 597);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(217, 21);
-            this.radioButton2.TabIndex = 23;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Сортировка по возрастанию";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.txtProductSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtProductSearch.Location = new System.Drawing.Point(10, 43);
+            this.txtProductSearch.Name = "txtProductSearch";
+            this.txtProductSearch.Size = new System.Drawing.Size(464, 29);
+            this.txtProductSearch.TabIndex = 61;
+            // 
+            // btnOchist
+            // 
+            this.btnOchist.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnOchist.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnOchist.Location = new System.Drawing.Point(394, 16);
+            this.btnOchist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOchist.Name = "btnOchist";
+            this.btnOchist.Size = new System.Drawing.Size(80, 22);
+            this.btnOchist.TabIndex = 60;
+            this.btnOchist.Text = "Отчистить";
+            this.btnOchist.UseVisualStyleBackColor = false;
             // 
             // ProdykziaForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 750);
+            this.ClientSize = new System.Drawing.Size(868, 609);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtProductSearch);
             this.Controls.Add(this.btnOchist);
             this.Controls.Add(this.productDataGridView);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ProdykziaForm";
             this.Text = "Продукция";
             this.Load += new System.EventHandler(this.ProdykziaForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.praktik_PDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.praktik_PDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
