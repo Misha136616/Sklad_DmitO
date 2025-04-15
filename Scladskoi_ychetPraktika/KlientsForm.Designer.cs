@@ -35,19 +35,26 @@ namespace Scladskoi_ychetPraktika
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.butSortir = new System.Windows.Forms.Button();
-            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.praktik_PDataSet = new Scladskoi_ychetPraktika.Praktik_PDataSet();
             this.btnDobav = new System.Windows.Forms.Button();
             this.btnYdal = new System.Windows.Forms.Button();
             this.btnObnov = new System.Windows.Forms.Button();
+            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.praktik_PDataSet = new Scladskoi_ychetPraktika.Praktik_PDataSet();
             this.clientsTableAdapter = new Scladskoi_ychetPraktika.Praktik_PDataSetTableAdapters.clientsTableAdapter();
             this.tableAdapterManager = new Scladskoi_ychetPraktika.Praktik_PDataSetTableAdapters.TableAdapterManager();
             this.label5 = new System.Windows.Forms.Label();
             this.txtProductSearch = new System.Windows.Forms.TextBox();
             this.btnOchist = new System.Windows.Forms.Button();
+            this.clientsDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.praktik_PDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -70,7 +77,7 @@ namespace Scladskoi_ychetPraktika
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(26, 356);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(170, 17);
             this.radioButton2.TabIndex = 34;
@@ -82,7 +89,7 @@ namespace Scladskoi_ychetPraktika
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(26, 326);
-            this.radioButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(154, 17);
             this.radioButton1.TabIndex = 33;
@@ -100,16 +107,6 @@ namespace Scladskoi_ychetPraktika
             this.butSortir.TabIndex = 32;
             this.butSortir.Text = "Сортировка";
             this.butSortir.UseVisualStyleBackColor = false;
-            // 
-            // clientsBindingSource
-            // 
-            this.clientsBindingSource.DataMember = "clients";
-            this.clientsBindingSource.DataSource = this.praktik_PDataSet;
-            // 
-            // praktik_PDataSet
-            // 
-            this.praktik_PDataSet.DataSetName = "Praktik_PDataSet";
-            this.praktik_PDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnDobav
             // 
@@ -143,6 +140,16 @@ namespace Scladskoi_ychetPraktika
             this.btnObnov.TabIndex = 8;
             this.btnObnov.Text = "Обновить";
             this.btnObnov.UseVisualStyleBackColor = false;
+            // 
+            // clientsBindingSource
+            // 
+            this.clientsBindingSource.DataMember = "clients";
+            this.clientsBindingSource.DataSource = this.praktik_PDataSet;
+            // 
+            // praktik_PDataSet
+            // 
+            this.praktik_PDataSet.DataSetName = "Praktik_PDataSet";
+            this.praktik_PDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // clientsTableAdapter
             // 
@@ -182,24 +189,72 @@ namespace Scladskoi_ychetPraktika
             this.btnOchist.BackColor = System.Drawing.Color.DarkOrange;
             this.btnOchist.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnOchist.Location = new System.Drawing.Point(394, 15);
-            this.btnOchist.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOchist.Margin = new System.Windows.Forms.Padding(2);
             this.btnOchist.Name = "btnOchist";
             this.btnOchist.Size = new System.Drawing.Size(80, 22);
             this.btnOchist.TabIndex = 66;
             this.btnOchist.Text = "Отчистить";
             this.btnOchist.UseVisualStyleBackColor = false;
             // 
+            // clientsDataGridView
+            // 
+            this.clientsDataGridView.AutoGenerateColumns = false;
+            this.clientsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.clientsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.clientsDataGridView.DataSource = this.clientsBindingSource;
+            this.clientsDataGridView.Location = new System.Drawing.Point(28, 93);
+            this.clientsDataGridView.Name = "clientsDataGridView";
+            this.clientsDataGridView.Size = new System.Drawing.Size(446, 363);
+            this.clientsDataGridView.TabIndex = 68;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "contact_info";
+            this.dataGridViewTextBoxColumn3.HeaderText = "contact_info";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "address";
+            this.dataGridViewTextBoxColumn4.HeaderText = "address";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "client_type";
+            this.dataGridViewTextBoxColumn5.HeaderText = "client_type";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
             // KlientsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(903, 470);
+            this.ClientSize = new System.Drawing.Size(913, 476);
+            this.Controls.Add(this.clientsDataGridView);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtProductSearch);
             this.Controls.Add(this.btnOchist);
             this.Controls.Add(this.groupBox2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "KlientsForm";
             this.Text = "Клиенты";
             this.Load += new System.EventHandler(this.KlientsForm_Load);
@@ -207,6 +262,7 @@ namespace Scladskoi_ychetPraktika
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.praktik_PDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +284,11 @@ namespace Scladskoi_ychetPraktika
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button butSortir;
+        private System.Windows.Forms.DataGridView clientsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
