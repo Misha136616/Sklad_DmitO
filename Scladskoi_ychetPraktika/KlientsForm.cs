@@ -36,8 +36,9 @@ namespace Scladskoi_ychetPraktika
          private bool validateClient()
         {
             // Проверяем, что все текстовые поля не пустые
-            if (!string.IsNullOrWhiteSpace(nameTextBox.Text) &&
-                !string.IsNullOrWhiteSpace(contact_infoTextBox.Text) && !string.IsNullOrWhiteSpace(addressTextBox.Text) &&
+            if (!string.IsNullOrWhiteSpace(nameTextBox.Text) ||
+                !string.IsNullOrWhiteSpace(contact_infoTextBox.Text) || 
+                 !string.IsNullOrWhiteSpace(addressTextBox.Text) ||
                 !string.IsNullOrWhiteSpace(client_typeTextBox.Text))
             {
                 return true;
