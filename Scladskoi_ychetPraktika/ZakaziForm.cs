@@ -31,6 +31,189 @@ namespace Scladskoi_ychetPraktika
             this.ordersTableAdapter.Fill(this.praktik_PDataSet.orders);
 
         }
+
+        /*
+        for new bd if clientID is need()-()
+          private void btnDobav_Click(object sender, EventArgs e)
+        {
+            if (validateClient())
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = @"
+    INSERT INTO orders (
+        client_id, order_type, status, created_at, processed_at, shipped_at,
+        quantity, packaging_type, packaging_weight, gross_weight, net_weight,
+        price_per_unit, total_price
+    )
+    VALUES (
+        @ClientId, @OrderType, @Status, @CreatedAt, @ProcessedAt, @ShippedAt,
+        @Quantity, @PackagingType, @PackagingWeight, @GrossWeight, @NetWeight,
+        @PricePerUnit, @TotalPrice
+    );";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(query, connection))
+                    {
+                        try
+                        {
+                            connection.Open();
+                            sqlCommand.CommandType = CommandType.Text;
+
+                            // Добавление параметров
+                            sqlCommand.Parameters.AddWithValue("@ClientId", client_idTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@OrderType", order_typeTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@Status", statusTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@CreatedAt", created_atDateTimePicker.Value);
+                            sqlCommand.Parameters.AddWithValue("@ProcessedAt", processed_atDateTimePicker.Value);
+                            sqlCommand.Parameters.AddWithValue("@ShippedAt", shipped_atDateTimePicker.Value);
+                            sqlCommand.Parameters.AddWithValue("@Quantity", decimal.Parse(quantityTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@PackagingWeight", decimal.Parse(packaging_weightTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@GrossWeight", decimal.Parse(gross_weightTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@NetWeight", decimal.Parse(net_weightTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@PricePerUnit", decimal.Parse(price_per_unitTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@TotalPrice", decimal.Parse(total_priceTextBox.Text));
+
+                            // Выполнение запроса
+                            sqlCommand.ExecuteNonQuery();
+                            MessageBox.Show("Заказ успешно добавлен");
+
+
+                     
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ошибка добавления заказа: " + ex.Message);
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Незаполненные поля или неверный формат данных");
+            }
+        }
+
+        private void btnYdal_Click(object sender, EventArgs e)
+        {
+            if (ordersDataGridView.CurrentRow != null)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "DELETE FROM orders WHERE id = @OrderId";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(query, connection))
+                    {
+                        try
+                        {
+                            connection.Open();
+                            sqlCommand.CommandType = CommandType.Text;
+
+                            // Получение ID выбранной строки из DataGridView
+                            int orderId = Convert.ToInt32(ordersDataGridView.CurrentRow.Cells["id"].Value);
+                            sqlCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+                            // Выполнение запроса
+                            sqlCommand.ExecuteNonQuery();
+                            MessageBox.Show("Заказ успешно удален");
+
+                            // Обновление DataGridView
+                            
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ошибка удаления заказа: " + ex.Message);
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите заказ для удаления");
+            }
+        }
+
+        private void btnObnov_Click(object sender, EventArgs e)
+        {
+            if (validateClient())
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = @"
+    UPDATE orders 
+    SET 
+        client_id = @ClientId,
+        order_type = @OrderType,
+        status = @Status,
+        created_at = @CreatedAt,
+        processed_at = @ProcessedAt,
+        shipped_at = @ShippedAt,
+        quantity = @Quantity,
+        packaging_type = @PackagingType,
+        packaging_weight = @PackagingWeight,
+        gross_weight = @GrossWeight,
+        net_weight = @NetWeight,
+        price_per_unit = @PricePerUnit,
+        total_price = @TotalPrice
+    WHERE id = @OrderId;";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(query, connection))
+                    {
+                        try
+                        {
+                            connection.Open();
+                            sqlCommand.CommandType = CommandType.Text;
+
+                            // Получение ID выбранной строки из DataGridView
+                            int orderId = Convert.ToInt32(ordersDataGridView.CurrentRow.Cells["id"].Value);
+                            sqlCommand.Parameters.AddWithValue("@OrderId", orderId);
+
+                            // Добавление параметров
+                            sqlCommand.Parameters.AddWithValue("@ClientId", client_idTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@OrderType", order_typeTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@Status", statusTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@CreatedAt", created_atDateTimePicker.Value);
+                            sqlCommand.Parameters.AddWithValue("@ProcessedAt", processed_atDateTimePicker.Value);
+                            sqlCommand.Parameters.AddWithValue("@ShippedAt", shipped_atDateTimePicker.Value);
+                            sqlCommand.Parameters.AddWithValue("@Quantity", decimal.Parse(quantityTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+                            sqlCommand.Parameters.AddWithValue("@PackagingWeight", decimal.Parse(packaging_weightTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@GrossWeight", decimal.Parse(gross_weightTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@NetWeight", decimal.Parse(net_weightTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@PricePerUnit", decimal.Parse(price_per_unitTextBox.Text));
+                            sqlCommand.Parameters.AddWithValue("@TotalPrice", decimal.Parse(total_priceTextBox.Text));
+
+                            // Выполнение запроса
+                            sqlCommand.ExecuteNonQuery();
+                            MessageBox.Show("Заказ успешно обновлен");
+
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Ошибка обновления заказа: " + ex.Message);
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Незаполненные поля или неверный формат данных");
+            }
+        }
+         */
         /*
          private bool validateClient()
         {
