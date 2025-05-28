@@ -407,7 +407,176 @@ WHERE id = @Id";
             ordersBindingSource.Filter = string.Format("destination LIKE '%{0}%'", txtProductSearch.Text);
         }
     }
-         
+         private void btnDobav_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            INSERT INTO supplies (name, unit, quantity_available, quantity_used, last_updated_at)
+            VALUES (@Name, @Unit, @QtyAvailable, @QtyUsed, @UpdatedAt);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        if (string.IsNullOrWhiteSpace(nameTextBox.Text))
+                        {
+                            MessageBox.Show("Введите название материала");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@Name", nameTextBox.Text);
+
+                        command.Parameters.AddWithValue("@Unit", unitTextBox.Text);
+
+                        if (!decimal.TryParse(quantity_availableTextBox.Text, out decimal available))
+                        {
+                            MessageBox.Show("Введите корректное доступное количество");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@QtyAvailable", available);
+
+                        if (!decimal.TryParse(quantity_usedTextBox.Text, out decimal used))
+                        {
+                            MessageBox.Show("Введите корректное использованное количество");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@QtyUsed", used);
+
+                        if (DateTime.TryParse(last_updated_atDateTimePicker.Text, out DateTime updated))
+                        {
+                            command.Parameters.AddWithValue("@UpdatedAt", updated);
+                        }
+                        else
+                        {
+                            command.Parameters.AddWithValue("@UpdatedAt", DateTime.Now);
+                        }
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Материал успешно добавлен");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при добавлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnYdal_Click(object sender, EventArgs e)
+        {
+            if (suppliesDataGridView.CurrentRow != null)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Удалить выбранный материал?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "DELETE FROM supplies WHERE supply_id = @SupplyId;";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            try
+                            {
+                                connection.Open();
+                                command.CommandType = CommandType.Text;
+
+                                int id = Convert.ToInt32(suppliesDataGridView.CurrentRow.Cells["sid"].Value);
+                                command.Parameters.AddWithValue("@SupplyId", id);
+
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Материал удалён");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите строку для удаления");
+            }
+        }
+
+        private void btnObnov_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            UPDATE supplies
+            SET name = @Name,
+                unit = @Unit,
+                quantity_available = @QtyAvailable,
+                quantity_used = @QtyUsed,
+                last_updated_at = @UpdatedAt
+            WHERE supply_id = @SupplyId;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        command.Parameters.AddWithValue("@SupplyId", suppliesDataGridView.CurrentRow.Cells["sid"].Value);
+                        command.Parameters.AddWithValue("@Name", nameTextBox.Text);
+                        command.Parameters.AddWithValue("@Unit", unitTextBox.Text);
+                        command.Parameters.AddWithValue("@QtyAvailable", decimal.Parse(quantity_availableTextBox.Text));
+                        command.Parameters.AddWithValue("@QtyUsed", decimal.Parse(quantity_usedTextBox.Text));
+                        command.Parameters.AddWithValue("@UpdatedAt", DateTime.Parse(last_updated_atDateTimePicker.Text));
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Запись успешно обновлена");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при обновлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+        }
+
+        private void btnSortir_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                suppliesBindingSource.Sort = "name ASC";
+            }
+            else if (radioButton2.Checked)
+            {
+                suppliesBindingSource.Sort = "name DESC";
+            }
+        }
+
+        private void txtProductSearch_TextChanged(object sender, EventArgs e)
+        {
+            suppliesBindingSource.Filter = string.Format("name LIKE '%{0}%'", txtProductSearch.Text);
+        }
+    }
+
          */
     }
 }
