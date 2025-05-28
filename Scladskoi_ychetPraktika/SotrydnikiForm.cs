@@ -209,5 +209,205 @@ WHERE id = @Id";
         }
     }
          */
+
+        /*
+         
+         private void btnDobav_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            INSERT INTO orders (client_id, destination, order_type, status, created_at, processed_at, shipped_at, is_accepted, accepted_at, quantity, packaging_type, total_price)
+            VALUES (@ClientId, @Destination, @OrderType, @Status, @CreatedAt, @ProcessedAt, @ShippedAt, @IsAccepted, @AcceptedAt, @Quantity, @PackagingType, @TotalPrice);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        if (!int.TryParse(client_idTextBox.Text, out int clientId))
+                        {
+                            MessageBox.Show("Введите корректный ID клиента");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@ClientId", clientId);
+
+                        command.Parameters.AddWithValue("@Destination", destinationTextBox.Text);
+
+                        if (order_typeComboBox.SelectedItem == null)
+                        {
+                            MessageBox.Show("Выберите тип заказа");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@OrderType", order_typeComboBox.SelectedItem.ToString());
+
+                        if (statusComboBox.SelectedItem == null)
+                        {
+                            MessageBox.Show("Выберите статус");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@Status", statusComboBox.SelectedItem.ToString());
+
+                        command.Parameters.AddWithValue("@CreatedAt", created_atDateTimePicker.Value);
+                        command.Parameters.AddWithValue("@ProcessedAt", processed_atDateTimePicker.Value);
+                        command.Parameters.AddWithValue("@ShippedAt", shipped_atDateTimePicker.Value);
+                        command.Parameters.AddWithValue("@IsAccepted", is_acceptedCheckBox.Checked);
+                        command.Parameters.AddWithValue("@AcceptedAt", accepted_atDateTimePicker.Value);
+
+                        if (!decimal.TryParse(quantityTextBox.Text, out decimal quantity))
+                        {
+                            MessageBox.Show("Введите корректное количество");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@Quantity", quantity);
+
+                        command.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+
+                        if (!decimal.TryParse(total_priceTextBox.Text, out decimal totalPrice))
+                        {
+                            MessageBox.Show("Введите корректную цену");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@TotalPrice", totalPrice);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Заказ успешно добавлен");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при добавлении заказа: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnYdal_Click(object sender, EventArgs e)
+        {
+            if (ordersDataGridView.CurrentRow != null)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Вы уверены, что хотите удалить заказ?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "DELETE FROM orders WHERE order_id = @OrderId;";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            try
+                            {
+                                connection.Open();
+                                command.CommandType = CommandType.Text;
+
+                                int orderId = Convert.ToInt32(ordersDataGridView.CurrentRow.Cells["order_id"].Value);
+                                command.Parameters.AddWithValue("@OrderId", orderId);
+
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Заказ успешно удалён");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите заказ для удаления");
+            }
+        }
+
+        private void btnObnov_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            UPDATE orders
+            SET client_id = @ClientId,
+                destination = @Destination,
+                order_type = @OrderType,
+                status = @Status,
+                created_at = @CreatedAt,
+                processed_at = @ProcessedAt,
+                shipped_at = @ShippedAt,
+                is_accepted = @IsAccepted,
+                accepted_at = @AcceptedAt,
+                quantity = @Quantity,
+                packaging_type = @PackagingType,
+                total_price = @TotalPrice
+            WHERE order_id = @OrderId;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        command.Parameters.AddWithValue("@OrderId", ordersDataGridView.CurrentRow.Cells["order_id"].Value);
+                        command.Parameters.AddWithValue("@ClientId", int.Parse(client_idTextBox.Text));
+                        command.Parameters.AddWithValue("@Destination", destinationTextBox.Text);
+                        command.Parameters.AddWithValue("@OrderType", order_typeComboBox.SelectedItem.ToString());
+                        command.Parameters.AddWithValue("@Status", statusComboBox.SelectedItem.ToString());
+                        command.Parameters.AddWithValue("@CreatedAt", created_atDateTimePicker.Value);
+                        command.Parameters.AddWithValue("@ProcessedAt", processed_atDateTimePicker.Value);
+                        command.Parameters.AddWithValue("@ShippedAt", shipped_atDateTimePicker.Value);
+                        command.Parameters.AddWithValue("@IsAccepted", is_acceptedCheckBox.Checked);
+                        command.Parameters.AddWithValue("@AcceptedAt", accepted_atDateTimePicker.Value);
+                        command.Parameters.AddWithValue("@Quantity", decimal.Parse(quantityTextBox.Text));
+                        command.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+                        command.Parameters.AddWithValue("@TotalPrice", decimal.Parse(total_priceTextBox.Text));
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Заказ успешно обновлён");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при обновлении заказа: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnSortir_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                ordersBindingSource.Sort = "destination ASC";
+            }
+            else if (radioButton2.Checked)
+            {
+                ordersBindingSource.Sort = "destination DESC";
+            }
+        }
+
+        private void txtProductSearch_TextChanged(object sender, EventArgs e)
+        {
+            ordersBindingSource.Filter = string.Format("destination LIKE '%{0}%'", txtProductSearch.Text);
+        }
+    }
+         
+         */
     }
 }
