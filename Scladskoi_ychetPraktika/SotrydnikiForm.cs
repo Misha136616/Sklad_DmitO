@@ -577,6 +577,336 @@ WHERE id = @Id";
         }
     }
 
+        private void btnDobav_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            INSERT INTO raw_potato (name, variety, weight_per_unit, packaging_type, receiving_id, washed_at)
+            VALUES (@Name, @Variety, @WeightPerUnit, @PackagingType, @ReceivingId, @WashedAt);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        if (string.IsNullOrWhiteSpace(nameTextBox.Text))
+                        {
+                            MessageBox.Show("Введите название");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@Name", nameTextBox.Text);
+
+                        command.Parameters.AddWithValue("@Variety", varietyTextBox.Text);
+                        command.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+
+                        if (!decimal.TryParse(weight_per_unitTextBox.Text, out decimal weight))
+                        {
+                            MessageBox.Show("Введите корректный вес");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@WeightPerUnit", weight);
+
+                        if (!int.TryParse(receiving_idTextBox.Text, out int receivingId))
+                        {
+                            MessageBox.Show("Введите корректный ID поступления");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@ReceivingId", receivingId);
+
+                        command.Parameters.AddWithValue("@WashedAt", washed_atDateTimePicker.Value);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Сырой картофель успешно добавлен");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при добавлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnYdal_Click(object sender, EventArgs e)
+        {
+            if (raw_potatoDataGridView.CurrentRow != null)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Удалить выбранную запись сырого картофеля?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "DELETE FROM raw_potato WHERE raw_potato_id = @RawPotatoId;";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            try
+                            {
+                                connection.Open();
+                                command.CommandType = CommandType.Text;
+
+                                int id = Convert.ToInt32(raw_potatoDataGridView.CurrentRow.Cells["rid"].Value);
+                                command.Parameters.AddWithValue("@RawPotatoId", id);
+
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Сырой картофель удалён");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите строку для удаления");
+            }
+        }
+
+        private void btnObnov_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            UPDATE raw_potato
+            SET name = @Name,
+                variety = @Variety,
+                weight_per_unit = @WeightPerUnit,
+                packaging_type = @PackagingType,
+                receiving_id = @ReceivingId,
+                washed_at = @WashedAt
+            WHERE raw_potato_id = @RawPotatoId;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        command.Parameters.AddWithValue("@RawPotatoId", raw_potatoDataGridView.CurrentRow.Cells["rid"].Value);
+                        command.Parameters.AddWithValue("@Name", nameTextBox.Text);
+                        command.Parameters.AddWithValue("@Variety", varietyTextBox.Text);
+                        command.Parameters.AddWithValue("@WeightPerUnit", decimal.Parse(weight_per_unitTextBox.Text));
+                        command.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+                        command.Parameters.AddWithValue("@ReceivingId", int.Parse(receiving_idTextBox.Text));
+                        command.Parameters.AddWithValue("@WashedAt", washed_atDateTimePicker.Value);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Запись успешно обновлена");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при обновлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void butSortir_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                raw_potatoBindingSource.Sort = "name ASC";
+            }
+            else if (radioButton2.Checked)
+            {
+                raw_potatoBindingSource.Sort = "name DESC";
+            }
+        }
+
+        private void txtProductSearch_TextChanged(object sender, EventArgs e)
+        {
+            raw_potatoBindingSource.Filter = string.Format("name LIKE '%{0}%'", txtProductSearch.Text);
+        }
+
+        private void btnDobav2_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            INSERT INTO clean_potato (raw_potato_id, order_id, quantity_sent_tons, packaging_type, category)
+            VALUES (@RawPotatoId, @OrderId, @Quantity, @PackagingType, @Category);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        if (!int.TryParse(raw_potato_idTextBox.Text, out int rawId))
+                        {
+                            MessageBox.Show("Введите корректный ID сырого картофеля");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@RawPotatoId", rawId);
+
+                        if (!int.TryParse(order_idTextBox.Text, out int orderId))
+                        {
+                            MessageBox.Show("Введите корректный ID заказа");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@OrderId", orderId);
+
+                        if (!decimal.TryParse(quantity_sent_tonsTextBox.Text, out decimal quantity))
+                        {
+                            MessageBox.Show("Введите корректное количество");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@Quantity", quantity);
+
+                        command.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+
+                        if (string.IsNullOrWhiteSpace(categoryTextBox.Text) || !new[] { "стандарт", "нестандарт", "корм", "отход" }.Contains(categoryTextBox.Text))
+                        {
+                            MessageBox.Show("Введите корректную категорию (стандарт, нестандарт, корм, отход)");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@Category", categoryTextBox.Text);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Запись очищенного картофеля успешно добавлена");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при добавлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnYdal2_Click(object sender, EventArgs e)
+        {
+            if (clean_potatoDataGridView.CurrentRow != null)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Удалить выбранную запись очищенного картофеля?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "DELETE FROM clean_potato WHERE clean_potato_id = @CleanPotatoId;";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            try
+                            {
+                                connection.Open();
+                                command.CommandType = CommandType.Text;
+
+                                int id = Convert.ToInt32(clean_potatoDataGridView.CurrentRow.Cells["rcid"].Value);
+                                command.Parameters.AddWithValue("@CleanPotatoId", id);
+
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Очищенный картофель удалён");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите строку для удаления");
+            }
+        }
+
+        private void btnObnov2_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            UPDATE clean_potato
+            SET raw_potato_id = @RawPotatoId,
+                order_id = @OrderId,
+                quantity_sent_tons = @Quantity,
+                packaging_type = @PackagingType,
+                category = @Category
+            WHERE clean_potato_id = @CleanPotatoId;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        command.Parameters.AddWithValue("@CleanPotatoId", clean_potatoDataGridView.CurrentRow.Cells["rcid"].Value);
+                        command.Parameters.AddWithValue("@RawPotatoId", int.Parse(raw_potato_idTextBox.Text));
+                        command.Parameters.AddWithValue("@OrderId", int.Parse(order_idTextBox.Text));
+                        command.Parameters.AddWithValue("@Quantity", decimal.Parse(quantity_sent_tonsTextBox.Text));
+                        command.Parameters.AddWithValue("@PackagingType", packaging_typeTextBox.Text);
+                        command.Parameters.AddWithValue("@Category", categoryTextBox.Text);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Запись успешно обновлена");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при обновлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void butSortir2_Click(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                raw_potatoBindingSource.Sort = "category ASC";
+            }
+            else if (radioButton3.Checked)
+            {
+                raw_potatoBindingSource.Sort = "category DESC";
+            }
+        }
+    }
+
+
+
+
+
          */
     }
 }
