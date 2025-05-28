@@ -905,7 +905,331 @@ WHERE id = @Id";
 
 
 
+        private void btnDobav_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    sqlConnection.Open();
 
+                    string query = @"INSERT INTO suppliers (name, contact_info, region) 
+                         VALUES (@Name, @ContactInfo, @Region)";
+
+                    using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+                    {
+                        // Проверка и добавление имени (обязательное поле)
+                        if (!string.IsNullOrWhiteSpace(nameTextBox.Text))
+                        {
+                            sqlCommand.Parameters.AddWithValue("@Name", nameTextBox.Text.Trim());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Введите название поставщика");
+                            return;
+                        }
+
+                        // Проверка и добавление контактной информации (не обязательное)
+                        if (!string.IsNullOrWhiteSpace(contact_infoTextBox.Text))
+                        {
+                            sqlCommand.Parameters.AddWithValue("@ContactInfo", contact_infoTextBox.Text.Trim());
+                        }
+                        else
+                        {
+                            sqlCommand.Parameters.AddWithValue("@ContactInfo", DBNull.Value);
+                        }
+
+                        // Проверка и добавление региона (не обязательное)
+                        if (!string.IsNullOrWhiteSpace(regionTextBox.Text))
+                        {
+                            sqlCommand.Parameters.AddWithValue("@Region", regionTextBox.Text.Trim());
+                        }
+                        else
+                        {
+                            sqlCommand.Parameters.AddWithValue("@Region", DBNull.Value);
+                        }
+
+                        sqlCommand.ExecuteNonQuery();
+                        MessageBox.Show("Поставщик успешно добавлен");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при добавлении поставщика: {ex.Message}");
+            }
+        }
+
+        private void btnYdal_Click(object sender, EventArgs e)
+        {
+            if (suppliersDataGridView.CurrentRow != null)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Вы уверены, что хотите удалить поставщика?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "DELETE FROM suppliers WHERE supplier_id = @SupplierId;";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            try
+                            {
+                                connection.Open();
+                                command.CommandType = CommandType.Text;
+
+                                int supplierId = Convert.ToInt32(suppliersDataGridView.CurrentRow.Cells["supplier_id"].Value);
+                                command.Parameters.AddWithValue("@SupplierId", supplierId);
+
+                                int rowsAffected = command.ExecuteNonQuery();
+                                if (rowsAffected > 0)
+                                {
+                                    MessageBox.Show("Поставщик успешно удалён");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Поставщик не найден");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите поставщика для удаления");
+            }
+        }
+
+        private void btnObnov_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            UPDATE suppliers
+            SET name = @Name,
+                contact_info = @ContactInfo,
+                region = @Region
+            WHERE supplier_id = @SupplierId;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        command.Parameters.AddWithValue("@SupplierId", suppliersDataGridView.CurrentRow.Cells["id"].Value);
+                        command.Parameters.AddWithValue("@Name", nameTextBox.Text);
+                        command.Parameters.AddWithValue("@ContactInfo", contact_infoTextBox.Text);
+                        command.Parameters.AddWithValue("@Region", regionTextBox.Text);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Поставщик успешно обновлён");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при обновлении поставщика: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnOchist_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtProductSearch_TextChanged(object sender, EventArgs e)
+        {
+            suppliersBindingSource.Filter = string.Format("Name LIKE '%{0}%'", txtProductSearch.Text);
+        }
+
+        private void btnDobav2_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            INSERT INTO receiving (supplier_id, received_date, variety, weight_tons, quality_notes)
+            VALUES (@SupplierId, @ReceivedDate, @Variety, @WeightTons, @QualityNotes);";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        if (!int.TryParse(supplier_idTextBox.Text, out int supplierId))
+                        {
+                            MessageBox.Show("Введите корректный ID поставщика");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@SupplierId", supplierId);
+
+                        if (DateTime.TryParse(received_dateDateTimePicker.Text, out DateTime receivedDate))
+                            command.Parameters.AddWithValue("@ReceivedDate", receivedDate);
+                        else
+                            command.Parameters.AddWithValue("@ReceivedDate", DateTime.Now);
+
+                        command.Parameters.AddWithValue("@Variety", varietyTextBox.Text);
+
+                        if (!decimal.TryParse(weight_tonsTextBox.Text, out decimal weight))
+                        {
+                            MessageBox.Show("Введите корректный вес");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@WeightTons", weight);
+
+                        command.Parameters.AddWithValue("@QualityNotes", quality_notesTextBox.Text);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Поставка успешно добавлена");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при добавлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void btnYdal2_Click(object sender, EventArgs e)
+        {
+            if (receivingDataGridView.CurrentRow != null)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Вы уверены, что хотите удалить запись о поставке?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        string query = "DELETE FROM receiving WHERE receiving_id = @ReceivingId;";
+
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            try
+                            {
+                                connection.Open();
+                                command.CommandType = CommandType.Text;
+
+                                int receivingId = Convert.ToInt32(receivingDataGridView.CurrentRow.Cells["receiving_id"].Value);
+                                command.Parameters.AddWithValue("@ReceivingId", receivingId);
+
+                                command.ExecuteNonQuery();
+                                MessageBox.Show("Запись о поставке удалена");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Ошибка при удалении: " + ex.Message);
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выберите запись для удаления");
+            }
+        }
+
+        private void btnObnov2_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = @"
+            UPDATE receiving
+            SET supplier_id = @SupplierId,
+                received_date = @ReceivedDate,
+                variety = @Variety,
+                weight_tons = @WeightTons,
+                quality_notes = @QualityNotes
+            WHERE receiving_id = @ReceivingId;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        command.CommandType = CommandType.Text;
+
+                        command.Parameters.AddWithValue("@ReceivingId", receivingDataGridView.CurrentRow.Cells["idid"].Value);
+                        command.Parameters.AddWithValue("@SupplierId", int.Parse(supplier_idTextBox.Text));
+                        command.Parameters.AddWithValue("@ReceivedDate", DateTime.Parse(receivingDataGridView.Text));
+                        command.Parameters.AddWithValue("@Variety", varietyTextBox.Text);
+                        command.Parameters.AddWithValue("@WeightTons", decimal.Parse(weight_tonsTextBox.Text));
+                        command.Parameters.AddWithValue("@QualityNotes", quality_notesTextBox.Text);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Поставка успешно обновлена");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ошибка при обновлении: " + ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void butSortir_Click(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                suppliersBindingSource.Sort = "name ASC";
+            }
+            else if (radioButton2.Checked)
+            {
+                suppliersBindingSource.Sort = "name DESC";
+
+            }
+        }
+
+        private void butSortir2_Click(object sender, EventArgs e)
+        {
+            if (radioButton4.Checked)
+            {
+                receivingBindingSource.Sort = "variety ASC";
+            }
+            else if (radioButton3.Checked)
+            {
+                receivingBindingSource.Sort = "variety DESC";
+
+            }
+        }
+    }
 
          */
     }
