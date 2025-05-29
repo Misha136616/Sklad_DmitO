@@ -1232,5 +1232,78 @@ WHERE id = @Id";
     }
 
          */
+
+        /*
+         private void vhodbut_Click(object sender, EventArgs e)
+{
+    if (!File.Exists("user.txt"))
+    {
+        MessageBox.Show("Файл пользователей не найден.");
+        return;
+    }
+
+    string enteredUsername = textBox1.Text.Trim();
+    string enteredPasswordHash = GlobalFunction.CalculateMD5Hash(textBox2.Text);
+
+    string[] lines = File.ReadAllLines("user.txt");
+
+    foreach (string line in lines)
+    {
+        if (string.IsNullOrWhiteSpace(line)) continue;
+
+        string[] parts = line.Trim().Split(':');
+        if (parts.Length != 2) continue;
+
+        string savedUsername = parts[0].Trim();
+        string savedPasswordHash = parts[1].Trim();
+
+        if (enteredUsername == savedUsername && enteredPasswordHash == savedPasswordHash)
+        {
+            // Проверяем имя пользователя и открываем соответствующую форму
+            if (enteredUsername == "yastrebov_i")
+            {
+                MenuForm2 menuForm2 = new MenuForm2();
+                menuForm2.FormClosed += (s, args) => this.Show();
+                this.Hide();
+                menuForm2.Show();
+            }
+            else if (enteredUsername == "belousova_n")
+            {
+                MenuForm menuForm = new MenuForm();
+                menuForm.FormClosed += (s, args) => this.Show();
+                this.Hide();
+                menuForm.Show();
+            }
+            else
+            {
+                // Для других пользователей можно добавить форму по умолчанию
+                MenuForm defaultForm = new MenuForm();
+                defaultForm.FormClosed += (s, args) => this.Show();
+                this.Hide();
+                defaultForm.Show();
+            }
+            return;
+        }
+    }
+
+    MessageBox.Show("Неверный логин или пароль.");
+}
+
+private void VhodForm_Load(object sender, EventArgs e)
+{
+    string filePath = "user.txt";
+
+    if (!File.Exists(filePath))
+    {
+        string defaultUsername = "yastrebov_i";
+        string defaultPassword = "admin";
+        string passwordHash = GlobalFunction.CalculateMD5Hash(defaultPassword);
+
+        // Можно добавить несколько пользователей по умолчанию
+        File.WriteAllText(filePath, $"{defaultUsername}:{passwordHash}\nbelousova_n:{GlobalFunction.CalculateMD5Hash("password")}\n");
+        MessageBox.Show("Создан файл пользователей по умолчанию.");
+    }
+}
+         */
     }
 }
